@@ -115,7 +115,7 @@ fi
 
 # support exa
 if is-callable 'exa'; then
-    alias ls="exa"
+    alias ls="exa --group-directories-first"
     alias l='ls -1a'         # Lists in one column, hidden files.
     alias ll='ls -l'         # Lists human readable sizes.
     alias la='ll -a'         # Lists human readable sizes, hidden files.
