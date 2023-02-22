@@ -9,3 +9,36 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+
+# Language specific environment variables
+## Go
+(( $+commands[go] )) \
+    && export GOPATH=$HOME/src/go && export PATH="$PATH:$HOME/src/go/bin"
+
+## Ruby
+(( $+commands[ruby] )) \
+    && export GEM_HOME=$(ruby -e 'print Gem.user_dir') && export PATH="$PATH:$GEM_HOME/bin"
+
+
+# Application fixes/workarounds
+## Fix Java applications under i3/sway
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+## Run firefox on wayland proper
+export MOZ_ENABLE_WAYLAND=1
+## and allow opening of links..
+export MOZ_DBUS_REMOTE=1
+
+## Fix trayicons under sway
+export XDG_CURRENT_DESKTOP="Unity"
+
+
+# Misc
+## ~/bin -> $PATH
+export PATH="$PATH:$HOME/bin"
+
+## Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && eval "$("$BASE16_SHELL/profile_helper.sh")"

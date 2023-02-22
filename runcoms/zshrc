@@ -10,4 +10,14 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+# Keybindings
+# <C-r> -> incremental history search
+bindkey '^r' history-incremental-search-backward
+
+# Aliases
+## mpv
+alias a='mpv --no-video'
+alias v='mpv -fs'
+
+## all-in neovim
+alias vim=nvim
